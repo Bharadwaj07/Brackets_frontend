@@ -1,0 +1,33 @@
+<div class="form-container">
+  <mat-card>
+        <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <h2>Register</h2>
+              <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="form.email.invalid"></mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+                <mat-error *ngIf="form.email.invalid"></mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>User Type</mat-label>
+                <mat-select formControlName="userType">
+                  <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName='password'>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput formControlName='confirmPassword'>
+              </mat-form-field>
+              <button class="button" mat-raised-button color="primary">Register</button>
+        </form>
+        <p>Have an Account ? <button mat-button color="accent" routerLink="../login">Login</button></p>
+  </mat-card>
+</div>

@@ -1,0 +1,82 @@
+.editor-menubar{
+    width: 100%;
+    height: 35px;
+    background-color: rgb(209, 200, 200);
+}
+.editor-container{
+    position: relative;
+    width: 100%;
+    height: 560px;
+    background-color:#ffff;
+    display: flex;
+    flex-direction: row;
+}
+.question-container{
+    width: 40%;
+    border: solid 5px grey;
+    overflow: scroll;
+}
+.question-container h2,h3{
+    font-family: Roboto Mono;
+    font-weight: 700;
+    font-size: 16px;
+}
+.question-block{
+    width: 100%;
+    height: 50%;
+    /* background-color: aqua; */
+}
+.input-block{
+    width: 100%;
+    height: 25%;
+}
+.input-sample{
+    /* width: 70%; */
+    height: 60%;
+    background-color: rgb(240, 234, 234);
+}
+.output-block{
+    width: 100%;
+    height: 25%;
+    font-family: Roboto Mono;
+}
+.output-sample{
+    height: 60%;
+    background-color: rgb(240, 234, 234);
+    
+}
+.main-editor{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    border: solid 5px grey;
+}
+.main{
+    width: 100%;
+    height: 60%;
+    border-bottom: solid 3px grey;
+    overflow: scroll;
+}
+.exce{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    border-top: solid 3px grey;
+}
+.output{
+    height: 70%;
+    width: 99%;
+    color: grey;
+    font-family: monospace;
+}
+.input{
+    height: 30%;
+    width: 99%;
+}
+.input textarea{
+    width: 100%;
+    height: 99%;
+    border: none;
+    outline: none;
+}
