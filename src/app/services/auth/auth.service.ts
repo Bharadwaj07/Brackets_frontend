@@ -12,13 +12,14 @@ export class AuthService {
       return false;
     }else{
       // console.log(token)
-      const decodeToken = jwt_decode(token);
+      const decodeToken:object = jwt_decode(token);
       // console.log(decodeToken)
       if(!decodeToken){
         console.log("invalid user");
         return false;
       }else{
-        console.log("valid user");
+        // console.log("valid user",decodeToken);
+        localStorage.setItem('currentUser',JSON.stringify(decodeToken));
         return true;
       }
     }
