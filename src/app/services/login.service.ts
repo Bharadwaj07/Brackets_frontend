@@ -3,6 +3,7 @@ import {User} from './models/user.model';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {tap} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +16,19 @@ export class LoginService {
   }
 
   loginUser(userdata:any):Observable<any>{
-    return this.http.post<any>(`${this.root_url}user-operations/login`,userdata);
+    return this.http.post<any>(`${this.root_url}user-operations/login`,userdata)
+                    .pipe(
+                      tap((response :any) => {
+                        if(response){
+                          if(response.success ===true){
+                            localStorage.setItem('authToken',response.token);
+                          }else{
+                            console.log("error response:",response);
+                          }
+                        }else{
+                          console.log("Error");
+                        }
+                      })
+                    )
   }
 }
