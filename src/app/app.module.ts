@@ -16,6 +16,7 @@ import { EditorHeaderComponent } from './shell/editor-header/editor-header.compo
 import { HomeHeaderComponent } from './shell/home-header/home-header.component';
 import { TecherHomeComponent } from './home/techer-home/techer-home.component';
 import { StudentHomeComponent } from './home/student-home/student-home.component';
+import { NotFound404Component } from './not-found404/not-found404.component';
 
 
 
@@ -31,6 +32,7 @@ import { StudentHomeComponent } from './home/student-home/student-home.component
     HomeHeaderComponent,
     TecherHomeComponent,
     StudentHomeComponent,
+    NotFound404Component,
   
   ],
   imports: [

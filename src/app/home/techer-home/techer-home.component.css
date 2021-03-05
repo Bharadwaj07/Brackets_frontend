@@ -9,8 +9,10 @@
 .details{
     margin: 50px;
 }
-.assignment-list{
+.assignment-info{
     width: 100%;
     height: 60%;
-    margin-top: 30px;
+}
+.assignments{
+    margin-top: 10px;
 }
