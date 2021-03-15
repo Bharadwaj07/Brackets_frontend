@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ViewAssignmentComponent } from './assignment/view-assignment/view-assignment.component';
+import { ViewClassComponent } from './class/view-class/view-class.component';
 import { EditorComponent } from './editor/editor.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -12,6 +14,8 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'editor',component:EditorComponent,canActivate:[AuthGaurd]},
+  {path:'class/:id',component:ViewClassComponent},
+  {path:'assignment/:id',component:ViewAssignmentComponent},
   {path:"**",component:NotFound404Component}
   
 ];

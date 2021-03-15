@@ -1,5 +1,7 @@
-import { Component, OnInit,ElementRef,ViewChild,AfterViewInit} from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import * as ace from "ace-builds";
+import { EditorService } from '../services/editor.service';
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
@@ -7,21 +9,49 @@ import * as ace from "ace-builds";
 })
 export class EditorComponent implements AfterViewInit {
   @ViewChild("editor") private editor: ElementRef<HTMLElement>;
-  constructor() { }
-
-  // ngOnInit(): void {
-  // }
-  ngAfterViewInit(){
-      ace.config.set("fontSize", "12px");
-      ace.config.set(
-        "basePath",
-        "https://unpkg.com/ace-builds@1.4.12/src-noconflict"
-      );
-      const aceEditor = ace.edit(this.editor.nativeElement);
-      aceEditor.setTheme("ace/theme/xcode");
-      aceEditor.session.setMode("ace/mode/javascript");
-      aceEditor.on("change", () => {
-        console.log(aceEditor.getValue());
+  output: string = "Your output will display here";
+  constructor(private compileService: EditorService) { }
+  aceEditor: any;
+  stdin = new FormControl('');
+  languages: any[] = [
+    { language: 'Python', id: 0, mode: 'python' },
+    { language: 'Java Script', id: 1, mode: 'javascript' },
+    { language: 'C/C++', id: 2, mode: 'c_cpp' },
+    { language: 'Go', id: 3, mode: 'golang' },
+  ]
+  language: any;
+  theme: string;
+  themes: string[] = ['dawn', 'github', 'eclipse', 'crimson_editor', 'terminal', 'textmate', 'vibrant_ink']
+  ngAfterViewInit() {
+    ace.config.set("fontSize", "12px");
+    ace.config.set(
+      "basePath",
+      "https://unpkg.com/ace-builds@1.4.12/src-noconflict"
+    );
+    this.aceEditor = ace.edit(this.editor.nativeElement);
+    this.aceEditor.setTheme("ace/theme/dawn");
+    this.aceEditor.session.setMode("ace/mode/c_cpp");
+  }
+  setMode(language) {
+    this.language = language;
+    this.aceEditor.session.setMode(`ace/mode/${language.mode}`);
+  }
+  setTheme(theme) {
+    this.theme = theme;
+    this.aceEditor.setTheme(`ace/theme/${theme}`);
+  }
+  runCode() {
+    if (this.language) {
+      const language = this.language.id;
+      const code = this.aceEditor.getValue();
+      this.compileService.compileCode(language, code, this.stdin.value).subscribe(result => {
+        if (result) {
+          if (result.errors) this.output = result.errors;
+          else this.output = result.output;
+        }
       });
+    } else {
+      alert("please select the language")
+    }
   }
 }

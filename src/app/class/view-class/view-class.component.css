@@ -1,0 +1,23 @@
+.container{
+    margin-top: 15px;
+}
+.button{
+    width: 200px;
+    border: 1px solid;
+    border-radius: 20px;
+}
+.card{
+    margin: 10px;
+}
+.list-menu{
+    margin-top: 10px;
+}
+.assignment-header{
+    display: flex;
+    justify-content: space-between;
+}
+.student-list{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}

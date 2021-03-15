@@ -16,5 +16,5 @@ export class HomeComponent implements OnInit {
     this.userType = JSON.parse(localStorage.getItem('currentUser')).userType;
     // console.log(this.userType)
   }
-  
+
 }

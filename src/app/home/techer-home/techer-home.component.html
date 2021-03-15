@@ -1,25 +1,62 @@
 <div class="container">
-    <div class="user-info">
-            <img src="../../assets/img/profile.png" width="20%">
-            <div class="details">
-                <h3>Bharadwaj</h3>
-                <h3>bkr@abc.com</h3>
-                <!-- <h3>User Type : Student</h3> -->
-            </div>
-            <div class="stats">
-                
-            </div>
-    </div>
-    <mat-divider></mat-divider>
-    <div class="assignment-info">
-        <mat-tab-group>
-            <mat-tab label="Assignments">
-                <div class="assignments">
-                    <button class="btn btn-success">Create Assignment</button>
+    <div class="row content">
+        <div class="col-3 ">
+            <div class="card">
+                <div class="card-body profile-details">
+                  <img src="assets/img/profile.png" alt="" width="50rem">
+                  <div class="details">
+                    <h4>{{currentUser.name}}</h4>
+                    <h4>{{currentUser.email}}</h4>
+                    <h4>{{currentUser.userType}}</h4>
+                  </div>
                 </div>
-            </mat-tab>
-            <mat-tab label="Submissions">  </mat-tab>
-        </mat-tab-group>
-        
+            </div>
+            <div class="card class-details">
+                <div class="card-header">
+                    Class
+                </div>
+                    <ul class="list-group list-group-flush" 
+                        *ngFor="let class of classList" style="width: 100%;">
+                        <li class="list-group-item" [routerLink]="['../class',class._id]">{{class.title}}</li>
+                    </ul>
+                
+                <div class="card-footer">
+                    <button type="button" class="btn btn-info btn-sm" (click)="openCreateClassDialog()">Create Class</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 ">
+            <div class="card post">
+                <div class="card-body">
+                    Post here
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="card" style="margin-top: 10px;" *ngFor="let assignment of allAssignmentList">
+                <div class="card-header" style="display: flex; justify-content: space-between;">
+                 <span>Class:  {{assignment.team.title}}</span>
+                  <h5 class="card-title"> {{assignment.owner.name}}</h5>
+                </div>
+                <div class="card-body">
+                    
+                  <p class="card-text">{{assignment.question}}</p>
+                  <h4>Language : {{getLanguage(assignment.language)}}</h4>
+                  <a href="#" class="btn btn-info">View</a>
+                </div>
+              </div>
+        </div>
+        <div class="col-3 ">
+            <div class="card">
+                <div class="card-header assignment-header">
+                    <h3>Assignments</h3>
+                    <button type="button" class="btn btn-primary btn-sm" style="height: 2rem;" (click)="openCreateAssignmentDialog()">New</button>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush" style="width: 100%;">
+                        <li class="list-group-item" *ngFor="let assignment of myassignmentList" [routerLink]="['../assignment',assignment._id]">{{assignment.title}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

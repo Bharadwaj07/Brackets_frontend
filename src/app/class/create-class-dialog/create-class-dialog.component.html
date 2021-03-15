@@ -1,0 +1,23 @@
+<div class="container">
+    <h3>Create Class</h3>
+    <form [formGroup]="classForm" (ngSubmit)="onSubmit()" novalidate>
+        <mat-form-field appearance="outline">
+            <mat-label>Class Name</mat-label>
+            <input matInput formControlName="title">
+        </mat-form-field>
+
+        <div class="card">
+            <div class="card-header">Students</div>
+            <div class="card-body">
+                <div *ngFor="let data of studentsList; let i=index">
+                    <label>
+                        <input type="checkbox" [value]="data._id" (change)="onCheckboxChange($event)" />
+                        {{data.name}}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <button  class="btn btn-success">Create Class</button>
+    </form>
+</div>

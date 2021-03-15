@@ -1,0 +1,55 @@
+<app-home-header></app-home-header>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <button mat-stroked-button  color="accent" class="button" routerLink="../../home">
+                <mat-icon aria-hidden="false" >keyboard_backspace</mat-icon>
+                Home
+            </button>
+            <div class="card">
+                <div class="card-header assignment-header">
+                    <h3>Members</h3>
+                    <button mat-icon-button >
+                        <mat-icon color="accent" (click)="openDialog()" style="cursor: pointer;">person_add</mat-icon>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item student-list" *ngFor="let student of studentList">
+                                <span>
+                                    {{student.name}}
+                                </span>
+                                <mat-icon aria-hidden="false" (click)="deleteStudent(student)" style="cursor: pointer;">person_remove</mat-icon>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card ">
+                <div class="card-body" *ngIf="classData">
+                  <h1 class="card-title" >{{classData.title}}</h1>
+                  <h4>{{classData.owner.name}}</h4>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row">
+                <div class="col-7">
+                    <div class="card ">
+                        <div class="card-body">
+                          
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-5">
+                    <div class="card ">
+                        <div class="card-body">
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

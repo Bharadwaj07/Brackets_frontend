@@ -1,0 +1,13 @@
+
+    <ng-container *ngIf="studentsToAdd">
+        <mat-selection-list #lists >
+            <mat-list-option *ngFor="let student of studentsToAdd"  
+                 [value]="student._id" [selected]="student._id">
+                {{student.name}}
+            </mat-list-option>
+        </mat-selection-list>
+        <button mat-raised-button color="primary" style="width: 100%; margin: auto;" (click)="addStudents(lists)">Add</button>
+    </ng-container>
+    <ng-container *ngIf="!studentsToAdd">
+        <h1>No students Left</h1>
+    </ng-container>

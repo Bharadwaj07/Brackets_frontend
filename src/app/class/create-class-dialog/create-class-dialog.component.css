@@ -1,0 +1,16 @@
+form{
+    width: 90%;
+    height:350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.card{
+    height: 200px;
+}
+.card-body{
+    overflow: scroll;
+}
+.card-body::-webkit-scrollbar{
+    display: none;
+}

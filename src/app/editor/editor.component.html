@@ -1,4 +1,49 @@
-<app-editor-header></app-editor-header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="../home">Brackets</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li> -->
+      </ul>
+      <ul class="navbar-nav mr-sm-6">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{language ? language.language :'Languages'}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <button class="dropdown-item" (click)="setMode(lang)" *ngFor="let lang of languages">{{lang.language}}</button>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{theme ? theme :'Themes'}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <button class="dropdown-item" (click)="setTheme(theme)" *ngFor="let theme of themes">{{theme}}</button>
+            </div>
+          </li>
+          <li class="nav-item ">
+            <button type="button" class="btn btn-success" (click)="runCode()">Run</button>
+        </li>
+        <!-- <li class="nav-item">
+            <button type="button" class="btn btn-info" >Submit</button>
+        </li> -->
+    </ul>
+    </div>
+  </nav>
 <div class="editor-container">
     <div class="question-container">
         <div class="container question-block">
@@ -23,10 +68,11 @@
 
         </div>
         <div class="exce">
-            <div class="output">This will display the output.</div>
+            <div class="output" [innerHtml]="output">
+            </div>
             <mat-divider></mat-divider>
             <div class="input">
-                <textarea placeholder="Input to your program"></textarea>
+                <textarea placeholder="Input to your program"  [formControl]="stdin"></textarea>
             </div>
         </div>
     </div>
