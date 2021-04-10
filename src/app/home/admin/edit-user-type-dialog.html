@@ -1,0 +1,12 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()"> 
+    <h4>Edit UserType</h4>
+    <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select formControlName="userType">
+            <mat-option value="TEACHER">Teacher</mat-option>
+            <mat-option value="STUDENT">Student</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent">Save</button>
+</form>

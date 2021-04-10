@@ -15,6 +15,7 @@ export class LoginService {
     return this.http.post<User>(`${this.root_url}user-operations`,userdata);
   }
 
+  
   loginUser(userdata:any):Observable<any>{
     return this.http.post<any>(`${this.root_url}user-operations/login`,userdata)
                     .pipe(

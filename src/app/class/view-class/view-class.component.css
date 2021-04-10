@@ -21,3 +21,13 @@
     display: flex;
     justify-content: space-between;
 }
+.subclass-card{
+    width: 100%;
+    align-items: center;
+}
+.card-body{
+    width: 100%;
+}
+.button{
+    margin: auto;
+}

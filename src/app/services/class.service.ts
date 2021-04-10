@@ -11,7 +11,25 @@ export class ClassService {
   constructor(private http :HttpClient) { }
 
   getAllStudents():Observable<any>{
-    return this.http.get<any>(`${environment.url}user-operations/STUDENT`);
+    return this.http.get<any>(`${environment.url}user-operations/STUDENT`,{
+      headers:{
+        Authorization:`Bearer ${this.token}`
+      }
+    });
+  }
+  getAllTeachers():Observable<any>{
+    return this.http.get<any>(`${environment.url}user-operations/TEACHER`,{
+      headers:{
+        Authorization:`Bearer ${this.token}`
+      }
+    });
+  }
+  listAllClass():Observable<any>{
+    return this.http.get<any>(`${environment.url}team-operations/`,{
+      headers:{
+        Authorization:`Bearer ${this.token}`
+      }
+    });
   }
   createClass(data):Observable<any>{
     return this.http.post(`${environment.url}team-operations`,data,{
@@ -20,7 +38,13 @@ export class ClassService {
       }
     });
   }
-
+  getClassCode():Observable<any>{
+    return this.http.get<any>(`${environment.url}team-operations/uuid`,{
+      headers:{
+        Authorization:`Bearer ${this.token}`
+      }
+    });
+  }
   getStudentsClass(studentId):Observable<any>{
     return this.http.get(`${environment.url}team-operations/student/${studentId}`,{
       headers:{
@@ -48,5 +72,12 @@ export class ClassService {
         Authorization:`Bearer ${this.token}`
       }
     });
+  }
+  joinClass(teamCode,userid):Observable<any>{
+    return this.http.put(`${environment.url}team-operations/class/${userid}/`,{teamCode},{
+      headers:{
+        Authorization:`Bearer ${this.token}`
+      }
+    })
   }
 }

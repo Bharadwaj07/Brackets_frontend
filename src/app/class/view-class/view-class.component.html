@@ -2,24 +2,21 @@
 <div class="container">
     <div class="row">
         <div class="col-3">
-            <button mat-stroked-button  color="accent" class="button" routerLink="../../home">
-                <mat-icon aria-hidden="false" >keyboard_backspace</mat-icon>
-                Home
-            </button>
+            <mat-form-field appearance="outline" style="margin: 10px;" *ngIf="classData">
+                <mat-label>Class Code</mat-label>
+                <input matInput  [value]="classData.teamCode" readonly>
+                <mat-icon matSuffix (click)="dissableCode(classData._id)" style="cursor: pointer;">block</mat-icon>
+            </mat-form-field>
             <div class="card">
                 <div class="card-header assignment-header">
                     <h3>Members</h3>
-                    <button mat-icon-button >
-                        <mat-icon color="accent" (click)="openDialog()" style="cursor: pointer;">person_add</mat-icon>
-                    </button>
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
                         <li class="list-group-item student-list" *ngFor="let student of studentList">
-                                <span>
-                                    {{student.name}}
-                                </span>
-                                <mat-icon aria-hidden="false" (click)="deleteStudent(student)" style="cursor: pointer;">person_remove</mat-icon>
+                            <span>
+                                {{student.name}}
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -28,24 +25,37 @@
         <div class="col">
             <div class="card ">
                 <div class="card-body" *ngIf="classData">
-                  <h1 class="card-title" >{{classData.title}}</h1>
-                  <h4>{{classData.owner.name}}</h4>
+                    <h1 class="card-title">{{classData.title}}</h1>
+                    <h4>{{classData.owner.name}}</h4>
                 </div>
             </div>
             <mat-divider></mat-divider>
             <div class="row">
                 <div class="col-7">
-                    <div class="card ">
+                    <div class="card" style="margin-top: 10px;" *ngFor="let assignment of classAssignment">
+                        <div class="card-header" style="display: flex; justify-content: space-between;">
+                            <span>Class: {{assignment.team.title}}</span>
+                            <h5 class="card-title"> {{assignment.owner.name}}</h5>
+                        </div>
                         <div class="card-body">
-                          
+
+                            <p class="card-text">{{assignment.question}}</p>
+                            <h4>Language : {{getLanguage(assignment.language)}}</h4>
+                            <a class="btn btn-info" routerLink="/editor">View</a>
                         </div>
                     </div>
-                    
                 </div>
                 <div class="col-5">
-                    <div class="card ">
+
+                    <div class="card">
                         <div class="card-body">
-                          
+                            <button type="button" class="btn btn-info" style="width: 100%;">Create Branch</button>
+                            <li class="list-group-item student-list" *ngFor="let student of studentList"
+                                style="margin-top: 10px;">
+                                <span>
+                                    {{student.name}}
+                                </span>
+                            </li>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,13 @@
-<app-home-header></app-home-header>
-<div *ngIf="userType === userTeacher">
-    <app-techer-home></app-techer-home>
-</div>
-<div *ngIf="userType === userStudent">
-    <app-student-home></app-student-home>
-</div>
+<ng-container *ngIf="userType !== userAdmin">
+    <app-home-header></app-home-header>
+    <div *ngIf="userType === userTeacher">
+        <app-techer-home></app-techer-home>
+    </div>
+    <div *ngIf="userType === userStudent">
+        <app-student-home></app-student-home>
+    </div>
+</ng-container>
+<ng-container *ngIf="userType === userAdmin">
+    <app-admin-header></app-admin-header>
+    <app-admin></app-admin>
+</ng-container>

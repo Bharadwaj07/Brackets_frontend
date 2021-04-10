@@ -14,32 +14,25 @@ export class CreateClassDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,private fb:FormBuilder,
     private _classService:ClassService,
   ) { }
-  studentsList:any[];
+  teacherList:any[];
+  classCode:string;
   ngOnInit(): void {
+    this._classService.getClassCode().subscribe(data =>{
+      this.classCode= data.classCode;
+    });
+    this._classService.getAllTeachers().subscribe(data =>{
+      this.teacherList = data;
+      this.initForm();
+    })
+     
+  }
+  initForm(){
     this.classForm = this.fb.group({
       title:["",Validators.required],
-      owner:[this.data._id],
-      students:this.fb.array([]),
+      owner:['',Validators.required],
+      teamCode:[this.classCode],
+      isEnabled:[true]
     });
-    this._classService.getAllStudents().subscribe(students =>{
-      this.studentsList = students;
-    });
-  }
-  onCheckboxChange(e) {
-    const checkArray: FormArray = this.classForm.get('students') as FormArray;
-  
-    if (e.target.checked) {
-      checkArray.push(new FormControl(e.target.value));
-    } else {
-      let i: number = 0;
-      checkArray.controls.forEach((item: FormControl) => {
-        if (item.value == e.target.value) {
-          checkArray.removeAt(i);
-          return;
-        }
-        i++;
-      });
-    }
   }
   onNoClick(): void {
     this.dialogRef.close();

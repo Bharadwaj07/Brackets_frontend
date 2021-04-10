@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AssignmentService } from 'src/app/services/assignment.service';
 import { ClassService } from 'src/app/services/class.service';
-
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-student-home',
   templateUrl: './student-home.component.html',
@@ -19,10 +20,16 @@ export class StudentHomeComponent implements OnInit {
     { language: 'C/C++', id: 2, mode: 'c_cpp' },
     { language: 'Go', id: 3, mode: 'golang' },
   ]
-  constructor(private route:Router,private _classService:ClassService,private _assignService:AssignmentService) { }
+  constructor(
+    private route:Router,
+    private _classService:ClassService,
+    private _assignService:AssignmentService,
+    public dialog: MatDialog,
+    ) { }
 
   ngOnInit(): void {
     this._classService.getStudentsClass(this.currentUser._id).subscribe(data =>{
+      console.log(data);
       this.classList = data;
     });
     this._assignService.getStudentsAssignment(this.currentUser._id).subscribe(data =>{
@@ -30,8 +37,54 @@ export class StudentHomeComponent implements OnInit {
     })
   }
 
+  joinClass(): void {
+    console.log("hii")
+    const dialogRef = this.dialog.open(JoinClassComponent, {
+      width: '250px',
+      data: this.currentUser._id
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit()
+    });
+  }
   getLanguage(languageId){
     const index = this.languages.findIndex(ele => ele.id == languageId);
     return this.languages[index].language;
+  }
+}
+
+@Component({
+  selector: 'join-class-dialog',
+  templateUrl: 'join-class-dialog.html',
+})
+export class JoinClassComponent implements OnInit {
+  myForm: FormGroup;
+  constructor(
+    public dialogRef: MatDialogRef<JoinClassComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,
+    private _classService:ClassService,
+  ) { }
+
+  ngOnInit() {
+    this.myForm = this.fb.group({
+      teamCode: [''],
+    });
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  onSubmit() {
+    if (this.myForm.valid) {
+      this._classService.joinClass(this.myForm.value.teamCode,this.data).subscribe(data =>{
+        console.log(data);
+        if(data){
+          this.dialogRef.close();
+        }
+        else{
+          alert("Invalid Class Code")
+        }
+      })
+    }
   }
 }

@@ -10,6 +10,7 @@ export class HomeComponent implements OnInit {
   userType :string;
   userTeacher:string = "TEACHER";
   userStudent:string = "STUDENT";
+  userAdmin:string = "ADMIN"
   constructor(private route:Router) { }
   panelOpenState = false;
   ngOnInit(): void {

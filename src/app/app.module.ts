@@ -15,12 +15,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditorHeaderComponent } from './shell/editor-header/editor-header.component';
 import { HomeHeaderComponent } from './shell/home-header/home-header.component';
 import { TecherHomeComponent } from './home/techer-home/techer-home.component';
-import { StudentHomeComponent } from './home/student-home/student-home.component';
+import { JoinClassComponent, StudentHomeComponent } from './home/student-home/student-home.component';
 import { NotFound404Component } from './not-found404/not-found404.component';
 import { CreateClassDialogComponent } from './class/create-class-dialog/create-class-dialog.component';
 import { CreateAssignmentDialogComponent } from './assignment/create-assignment-dialog/create-assignment-dialog.component';
 import { AddNewStudentsDialogComponent, ViewClassComponent } from './class/view-class/view-class.component';
 import { ViewAssignmentComponent } from './assignment/view-assignment/view-assignment.component';
+import { TestCasesComponent } from './assignment/create-assignment-dialog/test-cases/test-cases.component';
+import { AdminComponent, EditUserTypeDialog } from './home/admin/admin.component';
+import { AdminHeaderComponent } from './shell/admin-header/admin-header.component';
 
 
 
@@ -42,7 +45,11 @@ import { ViewAssignmentComponent } from './assignment/view-assignment/view-assig
     ViewClassComponent,
     ViewAssignmentComponent,
     AddNewStudentsDialogComponent,
-  
+    TestCasesComponent,
+    AdminComponent,
+    AdminHeaderComponent,
+    EditUserTypeDialog,
+    JoinClassComponent,
   ],
   imports: [
     BrowserModule,

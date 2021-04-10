@@ -37,7 +37,11 @@ export class AssignmentService {
       }
     })
   }
-  getClassAssignments():Observable<any>{
-    return 
+  getClassAssignments(classId):Observable<any>{
+    return this.http.get(`${environment.url}assignment-operations/class/${classId}`,{
+      headers:{
+        Authorization:`Bearer ${this.token}`
+      }
+    });
   }
 }

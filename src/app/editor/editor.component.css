@@ -64,10 +64,9 @@
     flex-direction: column;
     border-top: solid 3px grey;
 }
-.output{
+.output-container{
     height: 50%;
     width: 99%;
-    padding: 20px;
     color: rgb(58, 53, 53);
     font-family: monospace;
     overflow: scroll;

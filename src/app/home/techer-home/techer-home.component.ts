@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { AssignmentService } from 'src/app/services/assignment.service';
 import { ClassService } from 'src/app/services/class.service';
 import { CreateAssignmentDialogComponent } from '../../assignment/create-assignment-dialog/create-assignment-dialog.component';

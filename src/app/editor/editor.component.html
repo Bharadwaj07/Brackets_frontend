@@ -1,79 +1,80 @@
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" routerLink="../home">Brackets</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Menu
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li> -->
-      </ul>
-      <ul class="navbar-nav mr-sm-6">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{language ? language.language :'Languages'}}
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <button class="dropdown-item" (click)="setMode(lang)" *ngFor="let lang of languages">{{lang.language}}</button>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{theme ? theme :'Themes'}}
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <button class="dropdown-item" (click)="setTheme(theme)" *ngFor="let theme of themes">{{theme}}</button>
-            </div>
-          </li>
-          <li class="nav-item ">
-            <button type="button" class="btn btn-success" (click)="runCode()">Run</button>
-        </li>
-        <!-- <li class="nav-item">
-            <button type="button" class="btn btn-info" >Submit</button>
-        </li> -->
-    </ul>
-    </div>
-  </nav>
-<div class="editor-container">
-    <div class="question-container">
-        <div class="container question-block">
-            <h2>Question : Some Title</h2>
-            <p class="question">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here',
-                content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
-            </p>
-        </div>
-        <div class="container input-block">
-            <h2>Input Example :</h2>
-            <div class="input-sample">
-                
-            </div>
-        </div>
-        <div class="container output-block">
-            <h2>Output Example :</h2>
-            <div class="output-sample"></div>
-        </div>
-    </div>
-    <div class="main-editor">
-        <div class="main" #editor>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="../home">Brackets</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          {{language ? language.language :'Languages'}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <button class="dropdown-item" (click)="setMode(lang)"
+            *ngFor="let lang of languages">{{lang.language}}</button>
         </div>
-        <div class="exce">
-            <div class="output" [innerHtml]="output">
-            </div>
-            <mat-divider></mat-divider>
-            <div class="input">
-                <textarea placeholder="Input to your program"  [formControl]="stdin"></textarea>
-            </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          {{theme ? theme :'Themes'}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <button class="dropdown-item" (click)="setTheme(theme)" *ngFor="let theme of themes">{{theme}}</button>
         </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-sm-6">
+      <li class="nav-item ">
+        <button type="button" class="btn btn-success" style="margin-right: 10px;"  (click)="runCode()">Run</button>
+      </li>
+      <li class="nav-item">
+            <button type="button" class="btn btn-success" style="margin-right: 10px;" >Submit</button>
+        </li>
+    </ul>
+  </div>
+</nav>
+<div class="editor-container">
+  <div class="question-container">
+    <div class="container question-block">
+      <h2>Question : Some Title</h2>
+      <p class="question">It is a long established fact that a reader will be distracted by the readable content of a
+        page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+        distribution of letters, as opposed to using 'Content here, content here',
+        content here', making it look like readable English. Many desktop publishing packages and web page editors now
+        use Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
+      </p>
     </div>
+    <div class="container input-block">
+      <h2>Input Example :</h2>
+      <div class="input-sample">
+
+      </div>
+    </div>
+    <div class="container output-block">
+      <h2>Output Example :</h2>
+      <div class="output-sample"></div>
+    </div>
+  </div>
+  <div class="main-editor">
+    <div class="main" #editor>
+
+    </div>
+    <div class="exce">
+      <div class="output-container">
+        <div class="spinner" style="align-items: center" *ngIf="outputLoading">
+          <mat-spinner strokeWidth="3" [diameter]="30" style="margin:10px auto;"></mat-spinner>
+        </div>
+        <textarea *ngIf="output && !outputLoading" disabled style="width: 100%; padding: 20px;" rows="10"
+          [value]="output"></textarea>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="input">
+        <textarea placeholder="Input to your program" [formControl]="stdin"></textarea>
+      </div>
+    </div>
+  </div>
 </div>

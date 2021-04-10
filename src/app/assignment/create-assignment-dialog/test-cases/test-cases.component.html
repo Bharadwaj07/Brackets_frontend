@@ -1,0 +1,15 @@
+<form [formGroup]="testCaseForm" (ngSubmit)="onSubmit()" novalidate>
+    <mat-form-field appearance="outline">
+        <mat-label>TestCase  Name</mat-label>
+        <input matInput formControlName="title">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Input </mat-label>
+        <textarea matInput formControlName="inputs" class="code-samples"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Output Sample</mat-label>
+        <textarea matInput formControlName="outputs" class="code-samples"></textarea>
+    </mat-form-field>
+    <button  class="btn btn-success">Create TestCase</button>
+</form>

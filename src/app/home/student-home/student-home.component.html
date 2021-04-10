@@ -3,22 +3,31 @@
         <div class="col-3 ">
             <div class="card">
                 <div class="card-body profile-details">
-                  <img src="assets/img/profile.png" alt="" width="50rem">
-                  <div class="details">
-                    <h4>{{currentUser.name}}</h4>
-                    <h4>{{currentUser.email}}</h4>
-                    <h4>{{currentUser.userType}}</h4>
-                  </div>
+                    <img src="assets/img/profile.png" alt="" width="50rem">
+                    <div class="details">
+                        <h4>{{currentUser.name}}</h4>
+                        <h4>{{currentUser.email}}</h4>
+                        <h4>{{currentUser.userType}}</h4>
+                    </div>
                 </div>
             </div>
             <div class="card class-details">
                 <div class="card-header">
                     My Class
                 </div>
-                    <ul class="list-group list-group-flush" 
-                        *ngFor="let class of classList" style="width: 100%;">
+                <ng-container *ngIf="classList">
+                    <ul class="list-group list-group-flush" *ngFor="let class of classList" style="width: 100%;">
                         <li class="list-group-item">{{class.title}}</li>
                     </ul>
+                </ng-container>
+                <ng-container *ngIf="!classList">
+                    <ul class="list-group list-group-flush"  style="width: 100%;">
+                        <li class="list-group-item">Please Join Class</li>
+                    </ul>
+                </ng-container>
+            </div>
+            <div class="joinclass" style="width: 80%;margin:10px auto;">
+                <button type="button" class="btn btn-info" style="width: 100%;" (click)="joinClass()">Join Class</button>
             </div>
         </div>
         <div class="col-6 ">
@@ -30,16 +39,16 @@
             <mat-divider></mat-divider>
             <div class="card" style="margin-top: 10px;" *ngFor="let assignment of myassignmentList">
                 <div class="card-header" style="display: flex; justify-content: space-between;">
-                 <span>Class:  {{assignment.team.title}}</span>
-                  <h5 class="card-title"> {{assignment.owner.name}}</h5>
+                    <span>Class: {{assignment.team.title}}</span>
+                    <h5 class="card-title"> {{assignment.owner.name}}</h5>
                 </div>
                 <div class="card-body">
-                    
-                  <p class="card-text">{{assignment.question}}</p>
-                  <h4>Language : {{getLanguage(assignment.language)}}</h4>
-                  <a href="#" class="btn btn-info" routerLink="../editor">View</a>
+
+                    <p class="card-text">{{assignment.question}}</p>
+                    <h4>Language : {{getLanguage(assignment.language)}}</h4>
+                    <a href="#" class="btn btn-info" routerLink="../editor">View</a>
                 </div>
-              </div>
+            </div>
         </div>
         <div class="col-3 ">
             <div class="card">
@@ -48,7 +57,8 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush" style="width: 100%;">
-                        <li class="list-group-item" *ngFor="let assignment of myassignmentList" >{{assignment.title}}</li>
+                        <li class="list-group-item" *ngFor="let assignment of myassignmentList">{{assignment.title}}
+                        </li>
                     </ul>
                 </div>
             </div>
