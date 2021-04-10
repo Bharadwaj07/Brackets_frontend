@@ -31,8 +31,12 @@
     height: 25%;
 }
 .input-sample{
-    /* width: 70%; */
+    padding: 5px;
+    width: 100%;
     height: 60%;
+    border: none;
+    outline: none;
+    resize: none;
     background-color: rgb(240, 234, 234);
 }
 .output-block{
@@ -41,7 +45,12 @@
     font-family: Roboto Mono;
 }
 .output-sample{
+    padding: 5px;
+    width: 100%;
     height: 60%;
+    border: none;
+    outline: none;
+    resize: none;
     background-color: rgb(240, 234, 234);
     
 }
@@ -86,4 +95,12 @@
     height: 99%;
     border: none;
     outline: none;
+}
+.question{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    text-transform: inherit;
 }

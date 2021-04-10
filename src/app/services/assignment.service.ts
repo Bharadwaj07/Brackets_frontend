@@ -8,9 +8,16 @@ import {environment} from '../../environments/environment';
 export class AssignmentService {
   token = localStorage.getItem('authToken');
   constructor(private http :HttpClient) { }
-
+  
   createAssignment(data):Observable<any>{
     return this.http.post(`${environment.url}assignment-operations/`,data,{
+      headers:{
+        Authorization:`Bearer ${this.token}`
+      }
+    })
+  }
+  getAssignment(id):Observable<any>{
+    return this.http.get(`${environment.url}assignment-operations/assignment/${id}`,{
       headers:{
         Authorization:`Bearer ${this.token}`
       }

@@ -1,0 +1,15 @@
+<h4>Running TestCases</h4>
+<mat-progress-bar mode="indeterminate" *ngIf="testCaseResult.length ===0"></mat-progress-bar>
+<ul class="list-group" style="margin-top: 10px;" *ngIf="testCaseResult.length !==0">
+    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let test of testCaseResult">
+        {{test.testcase.title}}
+        <span class="material-icons" *ngIf="test.response == true" style="color: green;">
+            done
+        </span>
+        <span class="material-icons" *ngIf="test.response ==false"  style="color: red;">
+            dangerous
+        </span>
+    </li>
+    <button class="btn btn-success" *ngIf="testCaseResult.length !==0" style="margin-top: 10px;">Submit</button>
+</ul>
+

@@ -13,9 +13,9 @@ const routes: Routes = [
   {path:'home',component:HomeComponent,canActivate:[AuthGaurd]},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
-  {path:'editor',component:EditorComponent,canActivate:[AuthGaurd]},
   {path:'class/:id',component:ViewClassComponent},
   {path:'assignment/:id',component:ViewAssignmentComponent},
+  {path:'editor/:id',component:EditorComponent},
   {path:"**",component:NotFound404Component}
   
 ];

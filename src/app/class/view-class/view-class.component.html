@@ -41,7 +41,7 @@
 
                             <p class="card-text">{{assignment.question}}</p>
                             <h4>Language : {{getLanguage(assignment.language)}}</h4>
-                            <a class="btn btn-info" routerLink="/editor">View</a>
+                            <a class="btn btn-info" [routerLink]="['../../assignment',assignment._id]">View</a>
                         </div>
                     </div>
                 </div>

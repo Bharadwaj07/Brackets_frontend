@@ -52,6 +52,9 @@ export class StudentHomeComponent implements OnInit {
     const index = this.languages.findIndex(ele => ele.id == languageId);
     return this.languages[index].language;
   }
+  // navigateToEditor(id){
+  //   this.route.n
+  // }
 }
 
 @Component({

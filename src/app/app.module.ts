@@ -24,6 +24,7 @@ import { ViewAssignmentComponent } from './assignment/view-assignment/view-assig
 import { TestCasesComponent } from './assignment/create-assignment-dialog/test-cases/test-cases.component';
 import { AdminComponent, EditUserTypeDialog } from './home/admin/admin.component';
 import { AdminHeaderComponent } from './shell/admin-header/admin-header.component';
+import { RunTestCasesComponent } from './editor/run-test-cases/run-test-cases.component';
 
 
 
@@ -50,6 +51,7 @@ import { AdminHeaderComponent } from './shell/admin-header/admin-header.componen
     AdminHeaderComponent,
     EditUserTypeDialog,
     JoinClassComponent,
+    RunTestCasesComponent,
   ],
   imports: [
     BrowserModule,

@@ -30,8 +30,8 @@ export class TecherHomeComponent implements OnInit {
       this.allAssignmentList = data;
     });
     this._assignService.getTeachersAssignment(this.currentUser._id).subscribe(data =>{
-      console.log(data)
       this.myassignmentList = data
+      this.myassignmentList = this.myassignmentList.reverse();
     })
   }
   openCreateClassDialog(): void {

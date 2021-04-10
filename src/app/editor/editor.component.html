@@ -29,34 +29,27 @@
     </ul>
     <ul class="navbar-nav mr-sm-6">
       <li class="nav-item ">
-        <button type="button" class="btn btn-success" style="margin-right: 10px;"  (click)="runCode()">Run</button>
+        <button type="button" class="btn btn-success" style="margin-right: 10px;" (click)="runCode()">Run</button>
       </li>
       <li class="nav-item">
-            <button type="button" class="btn btn-success" style="margin-right: 10px;" >Submit</button>
-        </li>
+        <button type="button" class="btn btn-success" style="margin-right: 10px;" (click)="runTestCases()">Submit</button>
+      </li>
     </ul>
   </div>
 </nav>
 <div class="editor-container">
   <div class="question-container">
-    <div class="container question-block">
-      <h2>Question : Some Title</h2>
-      <p class="question">It is a long established fact that a reader will be distracted by the readable content of a
-        page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-        distribution of letters, as opposed to using 'Content here, content here',
-        content here', making it look like readable English. Many desktop publishing packages and web page editors now
-        use Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
-      </p>
+    <div class="container question-block" *ngIf="assignement">
+      <h2>Question : {{assignement.title}}</h2>
+      <textarea class="question" readonly>{{assignement.question}}</textarea>
     </div>
-    <div class="container input-block">
+    <div class="container input-block" *ngIf="inputSamples">
       <h2>Input Example :</h2>
-      <div class="input-sample">
-
-      </div>
+      <textarea class="input-sample" readonly>{{inputSamples}}</textarea>
     </div>
-    <div class="container output-block">
+    <div class="container output-block" *ngIf="outputSamples">
       <h2>Output Example :</h2>
-      <div class="output-sample"></div>
+      <textarea class="output-sample" readonly>{{outputSamples}}</textarea>
     </div>
   </div>
   <div class="main-editor">
