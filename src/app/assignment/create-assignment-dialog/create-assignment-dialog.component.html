@@ -56,15 +56,19 @@
   <mat-step [stepControl]="thirdFormGroup" label="Test Cases">
     <form [formGroup]="thirdFormGroup">
       <button type="button" class="btn btn-info" (click)="openCreateTestCase()">Add Test Case</button>
-      <ul class="list-group" style="margin-top: 10px;" *ngIf="testCasesList.length ===0" >
+      <ul class="list-group" style="margin-top: 10px;" *ngIf="testCasesList.length ===0">
         <li class="list-group-item d-flex justify-content-between align-items-center">
           No Test Cases Added
         </li>
       </ul>
-      <ul class="list-group" style="margin-top: 10px;" *ngIf="testCasesList" >
-        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let testcase of testCasesList">
+      <ul class="list-group" style="margin-top: 10px;" *ngIf="testCasesList">
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+          *ngFor="let testcase of testCasesList">
           {{testcase.title}}
-          <span class="badge badge-primary badge-pill">14</span>
+          <span class="badge  badge-pill" (click)="deleteTestCase(testcase.title)"
+            style="cursor: pointer;">
+            <mat-icon>delete</mat-icon>
+          </span>
         </li>
       </ul>
       <button class="btn btn-success" (click)="onSubmit()" style="margin-top: 10px;">Assign</button>

@@ -21,15 +21,16 @@ export class DiscussionService {
     this.socket.emit('message', data);
   }
 
-  newMessageReceived() {
-    const observable = new Observable<{ user: String, message: String}>(observer => {
-      this.socket.on('new message', (data) => {
+  newMessageReceived():any {
+    const observable = new Observable<any>(observer => {
+      this.socket.on('message_broadcast', (data) => {
         observer.next(data);
       });
       return () => {
         this.socket.disconnect();
       };
     });
+
     return observable;
   }
 

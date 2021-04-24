@@ -73,36 +73,69 @@
                 </table>
             </div>
         </mat-tab>
-        <mat-tab label="Submissions">
+        <mat-tab label="Assignments">
             <div class="manage">
-                <table mat-table [dataSource]="userDatasource" class="mat-elevation-z8">
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef> Name </th>
-                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <!-- 'owner', 'question', 'class', 'submissiondate' -->
+                <table mat-table [dataSource]="assignmentDataSource" class="mat-elevation-z8">
+                    <ng-container matColumnDef="owner">
+                        <th mat-header-cell *matHeaderCellDef> Teacher Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.owner.name}} </td>
                     </ng-container>
-                    <ng-container matColumnDef="email">
-                        <th mat-header-cell *matHeaderCellDef> Email </th>
-                        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    <ng-container matColumnDef="question">
+                        <th mat-header-cell *matHeaderCellDef> Question  </th>
+                        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
                     </ng-container>
-                    <ng-container matColumnDef="usertype">
-                        <th mat-header-cell *matHeaderCellDef> User Type </th>
-                        <td mat-cell *matCellDef="let element"> {{element.userType}} </td>
+                    <ng-container matColumnDef="class">
+                        <th mat-header-cell *matHeaderCellDef> Class </th>
+                        <td mat-cell *matCellDef="let element"> {{element.team.title}} </td>
                     </ng-container>
-                    <ng-container matColumnDef="actions">
-                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <ng-container matColumnDef="submissiondate">
+                        <th mat-header-cell *matHeaderCellDef> Last Submission Date </th>
                         <td mat-cell *matCellDef="let element">
-                            <button mat-button [matMenuTriggerFor]="menu">
-                                <mat-icon>more_vert</mat-icon>
-                            </button>
-                            <mat-menu #menu="matMenu">
-                                <button mat-menu-item>Edit</button>
-                                <button mat-menu-item>Delete</button>
-                            </mat-menu>
-
+                            {{element.submission | date :'dd:MM:yyyy'}}
                         </td>
                     </ng-container>
-                    <tr mat-header-row *matHeaderRowDef="userDisplayColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: userDisplayColumns;"></tr>
+                    <tr mat-header-row *matHeaderRowDef="assignmentDisplayColumsn"></tr>
+                    <tr mat-row *matRowDef="let row; columns: assignmentDisplayColumsn;"></tr>
+                </table>
+            </div>
+        </mat-tab>
+        <mat-tab label="Submissions">
+            <div class="manage">
+                <!-- 'question', 'class', 'owner', 'submittedBy', 'submissionDate', 'status' -->
+                <table mat-table [dataSource]="submissionDataSource" class="mat-elevation-z8">
+                    <ng-container matColumnDef="question">
+                        <th mat-header-cell *matHeaderCellDef> Question </th>
+                        <td mat-cell *matCellDef="let element"> {{element.assignment.title}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="class">
+                        <th mat-header-cell *matHeaderCellDef> Class </th>
+                        <td mat-cell *matCellDef="let element"> {{element.assignment.team.title}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="owner">
+                        <th mat-header-cell *matHeaderCellDef> Teacher </th>
+                        <td mat-cell *matCellDef="let element"> {{element.owner.name}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="submittedBy">
+                        <th mat-header-cell *matHeaderCellDef> Submitted By </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.student.name}}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="submissionDate">
+                        <th mat-header-cell *matHeaderCellDef> Submitted Date </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.submissionDate |date:'dd:MM:yyyy'}}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef> Status </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{isEvaluated(element.assignment._id) ? 'Evaluated' : 'Not evaluated'}}
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="submissionsDisplayColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: submissionsDisplayColumns;"></tr>
                 </table>
             </div>
         </mat-tab>

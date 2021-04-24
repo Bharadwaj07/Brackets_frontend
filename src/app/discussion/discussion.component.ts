@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ClassService } from '../services/class.service';
 import { DiscussionService } from '../services/discussion.service';
 
@@ -9,51 +9,69 @@ import { DiscussionService } from '../services/discussion.service';
   styleUrls: ['./discussion.component.css']
 })
 export class DiscussionComponent implements OnInit {
-  username:string;
-  isTyping:boolean = false;
-  messageArray: Array<any> = [];
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  classList:any[];
-  message = new FormControl('hiii');
-  currentRoomDetails:any;
-  constructor(private _classService:ClassService,private _discussion:DiscussionService) {
-    this._discussion.newMessageReceived().subscribe(data =>{
-      console.log(data);
+  username: string;
+  isTyping: boolean = false;
+  messageArray: any[] = [];
+  classList: any[];
+  sendForm: FormGroup;
+  currentRoomDetails: any;
+  constructor(private _classService: ClassService, private _discussion: DiscussionService, private fb: FormBuilder) {
+    this._discussion.newMessageReceived().subscribe(data => {
       this.messageArray.push(data);
-      this.isTyping = false;
+      let messageContainer = document.querySelector('.messages-container');
+      messageContainer.scrollTop = messageContainer.scrollHeight
     });
-    this._discussion.receivedTyping().subscribe(bool =>{
-      console.log(bool)
+    this.isTyping = false;
+    this._discussion.receivedTyping().subscribe(bool => {
       this.isTyping = bool.isTyping;
     })
   }
 
   ngOnInit(): void {
     this.username = this.currentUser.name;
-    this._classService.getStudentsClass(this.currentUser._id).subscribe(data =>{
-      console.log(data);
-      this.classList = data;
+    if (this.currentUser.userType == 'STUDENT') {
+      this._classService.getStudentsClass(this.currentUser._id).subscribe(data => {
+        this.classList = data;
+      });
+    } else {
+      this._classService.getAllClass(this.currentUser._id).subscribe(data => {
+        this.classList = data;
+      })
+    }
+    this.sendForm = this.fb.group({
+      message: ['']
     });
+
   }
-  joinRoom(roomData){
+  joinRoom(roomData) {
     const data = {
-      roomId:roomData._id,
-      name:roomData.title,
-      user:this.currentUser.name,
+      roomId: roomData._id,
+      name: roomData.title,
+      user: this.currentUser.name,
     };
     this.currentRoomDetails = data;
     this._discussion.joinRoom(data)
+    this._discussion.getRoomMessages(data.roomId).subscribe(data => {
+      this.messageArray = data.messages
+      let messageContainer = document.querySelector('.messages-container');
+      messageContainer.scrollTop = messageContainer.scrollHeight
+      // console.log(this.messageArray)
+    })
   }
   sendMessage() {
-    const {roomId,name,user} = this.currentRoomDetails
-    this._discussion.sendMessage({roomId:roomId,user,name,message:this.message.value});
+    const { roomId, name, user } = this.currentRoomDetails
+    this._discussion.sendMessage({ roomId: roomId, user, name, message: this.sendForm.value.message });
+    // this.messageArray.push({})
+    this.sendForm.patchValue({ message: '' })
+    this.ngOnInit()
     // this.webSocketService.sendMessage({room: this.chatroom, user: this.userService.getLoggedInUser().username, message: this.message});
     // this.message = '';
   }
 
   typing() {
-    const {roomId,name,user} = this.currentRoomDetails;
-    this._discussion.typing({roomId,name,user});
+    const { roomId, name, user } = this.currentRoomDetails;
+    this._discussion.typing({ roomId, name, user });
     // this.webSocketService.typing({room: this.chatroom, user: this.userService.getLoggedInUser().username});
   }
 

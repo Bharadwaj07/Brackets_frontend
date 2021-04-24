@@ -12,12 +12,12 @@
                 <input matInput formControlName="email">
                 <mat-error *ngIf="form.email.invalid"></mat-error>
               </mat-form-field>
-              <mat-form-field appearance="outline">
+              <!-- <mat-form-field appearance="outline">
                 <mat-label>User Type</mat-label>
                 <mat-select formControlName="userType">
                   <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
                 </mat-select>
-              </mat-form-field>
+              </mat-form-field> -->
               <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
                 <input type="password" matInput formControlName='password'>

@@ -56,10 +56,18 @@ export class EditDialogComponent implements OnInit {
       inputSample:[this.assignmentData.inputSample],
       outputSample:[this.assignmentData.outputSample],
     });
+    console.log(...this.assignmentData.testCases)
     this.thirdFormGroup = this.fb.group({
       testCases:this.fb.array([...this.assignmentData.testCases]),
     });
     this.testCasesList = this.assignmentData.testCases;
+  }
+  deleteTestCase(title){
+    const checkArray: FormArray = this.thirdFormGroup.get('testCases') as FormArray;
+    const index = this.testCasesList.findIndex(ele => ele.title == title);
+    checkArray.removeAt(index);
+    this.testCasesList = this.testCasesList.filter(testcase => testcase.title !== title);
+    console.log(this.thirdFormGroup.value)
   }
   onNoClick(): void {
     this.dialogRef.close();

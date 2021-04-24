@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ClassService } from 'src/app/services/class.service';
 import { AssignmentService } from 'src/app/services/assignment.service';
 import { CreateClassDialogComponent } from 'src/app/class/create-class-dialog/create-class-dialog.component';
+import { EvaluationService } from 'src/app/services/evaluation.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -13,31 +14,47 @@ import { CreateClassDialogComponent } from 'src/app/class/create-class-dialog/cr
 })
 export class AdminComponent implements OnInit {
   userDatasource: MatTableDataSource<any>;
+  evaluationList:any[];
   classDataSource: MatTableDataSource<any>;
   assignmentDataSource: MatTableDataSource<any>;
   submissionDataSource: MatTableDataSource<any>;
+  assignmentDisplayColumsn: string[] = ['owner', 'question', 'class', 'submissiondate']
+  submissionsDisplayColumns: string[] = ['question', 'class', 'owner', 'submittedBy', 'submissionDate', 'status']
   userDisplayColumns: string[] = ['name', 'email', 'usertype', 'actions']
-  classDisplayColumns:string[] =['title','classteacher','no_students','actions']
+  classDisplayColumns: string[] = ['title', 'classteacher', 'no_students', 'actions']
   constructor(
     private _userService: UserService,
     public dialog: MatDialog,
     private _class: ClassService,
     private _assignment: AssignmentService,
+    private _evaluation:EvaluationService
   ) { }
 
   ngOnInit(): void {
     this._userService.getAllUser().subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.userDatasource = new MatTableDataSource(data);
     });
-    this._class.listAllClass().subscribe(data =>{
+    this._class.listAllClass().subscribe(data => {
       this.classDataSource = new MatTableDataSource(data);
     });
-    this._assignment.getAllAssignment().subscribe(data =>{
-      console.log(data);
+    this._assignment.getAllAssignment().subscribe(data => {
+      // console.log(data);
+      this.assignmentDataSource = new MatTableDataSource(data);
+    });
+    this._assignment.listAllSubmissions().subscribe(data => {
+      // console.log(data);
+      this.submissionDataSource = new MatTableDataSource(data);
+    })
+    this._evaluation.listAllEvaluation().subscribe(data =>{
+      console.log(data)
+      this.evaluationList = data;
     })
   }
 
+  isEvaluated(assignmentId){
+    return this.evaluationList.find(ele => ele.assignment === assignmentId);
+  }
   editUserType(element): void {
     console.log("hii")
     const dialogRef = this.dialog.open(EditUserTypeDialog, {

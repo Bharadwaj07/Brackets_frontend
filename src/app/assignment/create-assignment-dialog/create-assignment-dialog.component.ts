@@ -54,6 +54,13 @@ export class CreateAssignmentDialogComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
+  deleteTestCase(title){
+    const checkArray: FormArray = this.thirdFormGroup.get('testCases') as FormArray;
+    const index = this.testCasesList.findIndex(ele => ele.title == title);
+    checkArray.removeAt(index);
+    this.testCasesList = this.testCasesList.filter(testcase => testcase.title !== title);
+    console.log(this.thirdFormGroup.value)
+  }
   openCreateTestCase(): void {
     const dialogRef = this.dialog.open(TestCasesComponent, {
       width: '300px',

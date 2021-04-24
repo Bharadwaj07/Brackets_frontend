@@ -39,4 +39,12 @@ export class EvaluationService {
       }
     })
   }
+  listAllEvaluation():Observable<any>{
+    return this.http.get(`${environment.url}evaluate/`,{
+      headers:{
+        Authorization:`Bearer ${this.token}`
+      }
+    })
+  }
+
 }

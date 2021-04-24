@@ -80,6 +80,13 @@ export class AssignmentService {
       }
     })
   }
+  listAllSubmissions():Observable<any>{
+    return this.http.get(`${environment.url}submission-operations`,{
+      headers:{
+        Authorization:`Bearer ${this.token}`
+      }
+    })
+  }
   getStudentSubmission(assignment,student):Observable<any>{
     return this.http.get(`${environment.url}submission-operations/${assignment}/${student}`,{
       headers:{
