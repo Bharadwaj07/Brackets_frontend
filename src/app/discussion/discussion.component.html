@@ -1,0 +1,33 @@
+<app-home-header></app-home-header>
+<div class="discussion-container">
+    <div class="room-list-container">
+        <mat-selection-list  [multiple]="false">
+            <mat-list-option *ngFor="let class of classList" [value]="class._id" (click)="joinRoom(class)">
+              {{class.title}}
+            </mat-list-option>
+          </mat-selection-list>
+    </div>
+    <div class="chat-container">
+        <div class="chat" *ngIf="currentRoomDetails">
+            <div class="messages-container">
+
+            </div>
+        </div>
+        <div class="send-msg">
+            <mat-form-field appearance="outline" style="width: 70%;">
+                <input matInput placeholder="Type Message">
+            </mat-form-field>
+        </div>
+        <!-- <div id="chat-room">
+            <h2>{{ username }}</h2>
+            <span><i *ngIf="isTyping" class="isTyping">typing...</i></span>
+            <div id="chat-window">
+                <div *ngFor="let item of messageArray">
+                    <p [class.userMessage] = "item.user == currentUser.name" [class.secUserMessage]="item.user != currentUser.name">{{ item.message }}</p>                
+                </div>
+            </div>
+            <input (keypress)="typing()" formControlName='message' name="message" type="text" placeholder="Message" />            
+            <button id="send" (click)="sendMessage()">Send</button>    
+        </div> -->
+    </div>
+</div>

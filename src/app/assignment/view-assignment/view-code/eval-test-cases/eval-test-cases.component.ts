@@ -4,35 +4,36 @@ import { AssignmentService } from 'src/app/services/assignment.service';
 import { EditorService } from 'src/app/services/editor.service';
 
 @Component({
-  selector: 'app-run-test-cases',
-  templateUrl: './run-test-cases.component.html',
-  styleUrls: ['./run-test-cases.component.css']
+  selector: 'app-eval-test-cases',
+  templateUrl: './eval-test-cases.component.html',
+  styleUrls: ['./eval-test-cases.component.css']
 })
-export class RunTestCasesComponent implements OnInit {
+export class EvalTestCasesComponent implements OnInit {
+
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
   code: string;
   language: string;
   testCaseResult: any[] = [];
   testCases: any[];
-  assignmentData:any;
+  assignmentData: any;
   constructor(
-    public dialogRef: MatDialogRef<RunTestCasesComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, 
+    public dialogRef: MatDialogRef<EvalTestCasesComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private compileService: EditorService,
-    private _assignmentService:AssignmentService,
-    ) { }
+    private _assignmentService: AssignmentService,
+  ) { }
 
   async ngOnInit() {
     this.code = this.data.code,
-    this.language = this.data.language;
-    this.assignmentData= this.data.assignmentData;
-    if(this.data.testCases.length !== 0){
+      this.language = this.data.language;
+    this.assignmentData = this.data.assignmentData;
+    if (this.data.testCases.length !== 0) {
       this.testCases = this.data.testCases;
-    }else{
+    } else {
       this.testCases = [{
-        title:"Test Case",
-        inputs:"",
-        outputs:""
+        title: "Test Case",
+        inputs: "",
+        outputs: ""
       }]
     }
     await this.runTestCase();
@@ -59,7 +60,7 @@ export class RunTestCasesComponent implements OnInit {
             reject(response)
           }
           else {
-            if(input !== ''){
+            if (input !== '') {
               if (result.output.trim() == output) {
                 const response = {
                   response: true
@@ -72,7 +73,7 @@ export class RunTestCasesComponent implements OnInit {
                 }
                 reject(response);
               }
-            }else{
+            } else {
               if (result.output) {
                 const response = {
                   response: true
@@ -88,19 +89,8 @@ export class RunTestCasesComponent implements OnInit {
       });
     })
   }
-  cancel(){
+  cancel() {
     this.dialogRef.close();
   }
-  onSubmit(){
-   const assignment = this.assignmentData._id;
-   const owner = this.assignmentData.owner;
-   const student = this.currentUser._id;
-   const assignmentBody = this.code;
-   const submissionDate = new Date();
-   const submissionData = {assignment,owner,student,assignmentBody,submissionDate};
-    this._assignmentService.createSubmission(submissionData).subscribe(data =>{
-      console.log(data);
-      this.dialogRef.close();
-    })
-  }
+
 }

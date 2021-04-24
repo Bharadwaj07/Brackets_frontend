@@ -40,11 +40,11 @@
             <div class="card" style="margin-top: 10px;" *ngFor="let assignment of myassignmentList">
                 <div class="card-header" style="display: flex; justify-content: space-between;">
                     <span>Class: {{assignment.team.title}}</span>
-                    <h5 class="card-title"> {{assignment.owner.name}}</h5>
+                    <h4 class="card-title" *ngIf="getScore(assignment._id)" >Score :{{getScore(assignment._id)+ '/' +assignment.maxScore}} </h4>
                 </div>
                 <div class="card-body">
 
-                    <p class="card-text" [innerHtml]="assignment.question"></p>
+                    <p class="card-text">{{assignment.title}}</p>
                     <h4>Language : {{getLanguage(assignment.language)}}</h4>
                     <a href="#" class="btn btn-info" [routerLink]="['../editor',assignment._id]">View</a>
                 </div>

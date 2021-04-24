@@ -35,6 +35,7 @@ export class CreateAssignmentDialogComponent implements OnInit {
       language:["",Validators.required],
       owner:[this.data._id],
       team:["",Validators.required],
+      maxScore:[''],
       submission:["",Validators.required]
     });
     this.secondFormGroup = this.fb.group({

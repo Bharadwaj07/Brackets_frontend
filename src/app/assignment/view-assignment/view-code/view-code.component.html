@@ -1,0 +1,45 @@
+<div>
+    <div class="button">
+        <button mat-icon-button (click)="close()">
+            <mat-icon >close</mat-icon>
+        </button>
+    </div>
+    <div class="view-container">
+        <div class="view-code">
+            <div class="question-block" *ngIf="assignement">
+                <h2>Question : {{assignement.title}}</h2>
+                <h4>Language : {{language.language}}</h4>
+                <textarea class="question" readonly>{{assignement.question}}</textarea>
+            </div>
+            <div class="editor" #editor aria-readonly="true"></div>
+            <div class="input">
+                <textarea placeholder="Input to your program" [formControl]="stdin"></textarea>
+            </div>
+        </div>
+        <div class="evaluate">
+            <div class="actions">
+                <button type="button" class="btn btn-success" (click)="runCode()">Run</button>
+                <button type="button" class="btn btn-secondary" (click)="runTestCases()">Run Test Cases</button>
+            </div>
+            <div class="output-container">
+                <mat-spinner class="spinner" strokeWidth="3" [diameter]="30" style="margin:10px auto;"
+                    *ngIf="outputLoading"></mat-spinner>
+                <textarea *ngIf="output" disabled style="width: 100%; padding: 20px;" rows="10"
+                    [value]="output"></textarea>
+            </div>
+            <div class="evaluation">
+                <form [formGroup]="evaluateForm" *ngIf="evaluateForm" (ngSubmit)="onSubmit()">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Marks out of {{assignement.maxScore}}</mat-label>
+                        <input matInput formControlName="score">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Comment</mat-label>
+                        <textarea matInput formControlName="comment"></textarea>
+                    </mat-form-field>
+                    <button style="margin: 10px;" class="btn btn-success" [disabled]="isEvaluated">Evaluate</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

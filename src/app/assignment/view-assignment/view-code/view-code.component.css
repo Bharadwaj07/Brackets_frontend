@@ -1,0 +1,77 @@
+.editor{
+    width: 100%;
+    height: 40vh;
+}
+.button{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.question-block{
+    width: 100%;
+    height: 35vh;
+}
+.question{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    text-transform: inherit;
+}
+.input{
+    margin-top: 5px;
+    width: 100%;
+}
+.input textarea{
+    color: rgb(58, 53, 53);
+    padding: 20px;
+    width: 100%;
+    resize: none;
+    /* border: none; */
+    outline: none;
+}
+.actions{
+    width: 100%;
+    display: flex;
+    margin: 10px 0;
+    /* justify-content: space-around; */
+}
+.actions button{
+    margin: 10px;
+}
+.view-container{
+    display: flex;
+    width: 100%;
+    height: 80vh;
+}
+.evaluate{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.evaluation{
+    width: 100%;
+    margin: 10px;
+    height: 35vh;
+}
+.evaluation form{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+}
+.view-code{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+
+}
+.output-container{
+    margin: 10px;
+}
+.spinner{
+    position: absolute;
+    top: 30vh;
+    right: 60vh;
+}

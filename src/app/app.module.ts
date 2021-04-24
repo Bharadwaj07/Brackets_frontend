@@ -25,6 +25,11 @@ import { TestCasesComponent } from './assignment/create-assignment-dialog/test-c
 import { AdminComponent, EditUserTypeDialog } from './home/admin/admin.component';
 import { AdminHeaderComponent } from './shell/admin-header/admin-header.component';
 import { RunTestCasesComponent } from './editor/run-test-cases/run-test-cases.component';
+import { ViewCodeComponent } from './assignment/view-assignment/view-code/view-code.component';
+import { ViewSubmissionComponent } from './assignment/view-assignment/view-submission/view-submission.component';
+import { EditDialogComponent } from './assignment/edit-dialog/edit-dialog.component';
+import { EvalTestCasesComponent } from './assignment/view-assignment/view-code/eval-test-cases/eval-test-cases.component';
+import { DiscussionComponent } from './discussion/discussion.component';
 
 
 
@@ -52,6 +57,11 @@ import { RunTestCasesComponent } from './editor/run-test-cases/run-test-cases.co
     EditUserTypeDialog,
     JoinClassComponent,
     RunTestCasesComponent,
+    ViewCodeComponent,
+    ViewSubmissionComponent,
+    EditDialogComponent,
+    EvalTestCasesComponent,
+    DiscussionComponent,
   ],
   imports: [
     BrowserModule,

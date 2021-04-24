@@ -34,9 +34,9 @@
                 </div>
                 <div class="card-body">
 
-                    <p class="card-text">{{assignment.question}}</p>
+                    <p class="card-text">{{assignment.title}}</p>
                     <h4>Language : {{getLanguage(assignment.language)}}</h4>
-                    <a href="#" class="btn btn-info">View</a>
+                    <a [routerLink]="['../submission',assignment._id]" class="btn btn-info">View</a>
                 </div>
             </div>
         </div>
@@ -50,8 +50,9 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush" style="width: 100%;">
                         <li class="list-group-item" *ngFor="let assignment of myassignmentList"
-                            [routerLink]="['../assignment',assignment._id]">{{assignment.title}}</li>
+                            [routerLink]="['../submission',assignment._id]">{{assignment.title}}</li>
                     </ul>
+                    <button type="button" class="btn btn-info" style="width: 100%;" routerLink="/assignment">View All Assignments</button>
                 </div>
             </div>
         </div>

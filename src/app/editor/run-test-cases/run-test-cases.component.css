@@ -1,0 +1,8 @@
+.buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.buttons button{
+    width: 40%;
+}

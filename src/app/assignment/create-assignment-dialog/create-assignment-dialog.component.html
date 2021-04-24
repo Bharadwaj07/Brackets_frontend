@@ -19,6 +19,10 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="fill">
+        <mat-label>Max Score</mat-label>
+        <input matInput formControlName="maxScore">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
         <mat-label>Submission Date</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="submission">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

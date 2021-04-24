@@ -10,9 +10,6 @@
             dangerous
         </span>
     </li>
-    <div class="buttons" *ngIf="testCaseResult.length === testCases.length" >
-        <button class="btn btn-warning" style="margin-top: 10px;" (click)="cancel()">Cancel</button>
-        <button class="btn btn-success" style="margin-top: 10px;" (click)="onSubmit()">Submit</button>
-    </div>
+        <button class="btn btn-warning" style="margin: 10px;" (click)="cancel()" *ngIf="testCaseResult.length === testCases.length">Ok</button>
 </ul>
 

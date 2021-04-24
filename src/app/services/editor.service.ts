@@ -6,13 +6,17 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class EditorService {
-
+  token = localStorage.getItem('authToken');
   constructor(private http :HttpClient) { }
 
   compileCode(language,code,stdin):Observable<any>{
     const data ={
       language,code,stdin
     }
-    return this.http.post(`${environment.url}compile`,data);
+    return this.http.post(`${environment.url}compile`,data,{
+      headers:{
+        Authorization:`Bearer ${this.token}`
+      }
+    });
   }
 }

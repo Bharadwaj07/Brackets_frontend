@@ -1,0 +1,13 @@
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.code-samples{
+    font-family: monospace;
+}
+.test-case-list{
+    margin: 10px;
+    border: 1px solid black;
+}

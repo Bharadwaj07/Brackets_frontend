@@ -1,0 +1,77 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup" *ngIf="firstFormGroup">
+        <ng-template matStepLabel>Assignment Details</ng-template>
+        <mat-form-field appearance="outline">
+          <mat-label>Assignment Name</mat-label>
+          <input matInput formControlName="title">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Language</mat-label>
+          <mat-select formControlName="language">
+            <mat-option *ngFor="let lang of languages" [value]="lang.id">{{lang.language}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Class</mat-label>
+          <mat-select formControlName="team">
+            <mat-option *ngFor="let class of classList" [value]="class._id">{{class.title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Max Score</mat-label>
+          <input matInput formControlName="maxScore">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Submission Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="submission">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Questions and input output">
+      <form [formGroup]="secondFormGroup" *ngIf="secondFormGroup">
+        <mat-form-field appearance="outline">
+          <mat-label>Question</mat-label>
+          <textarea matInput formControlName="question"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Input Sample</mat-label>
+          <textarea matInput formControlName="inputSample" class="code-samples"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Output Sample</mat-label>
+          <textarea matInput formControlName="outputSample" class="code-samples"></textarea>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" label="Test Cases">
+      <form [formGroup]="thirdFormGroup" *ngIf="thirdFormGroup">
+        <button type="button" class="btn btn-info" (click)="openCreateTestCase()">Add Test Case</button>
+        <ul class="list-group" style="margin-top: 10px;" *ngIf="testCasesList.length ===0" >
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            No Test Cases Added
+          </li>
+        </ul>
+        <ul class="list-group" style="margin-top: 10px;" *ngIf="testCasesList" >
+          <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let testcase of testCasesList">
+            {{testcase.title}}
+            <span class="badge badge-primary badge-pill">14</span>
+          </li>
+        </ul>
+        <button class="btn btn-success" (click)="onSubmit()" style="margin-top: 10px;">Save</button>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="reset(stepper)">Reset</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>

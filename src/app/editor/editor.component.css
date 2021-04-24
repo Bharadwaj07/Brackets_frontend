@@ -104,3 +104,7 @@
     resize: none;
     text-transform: inherit;
 }
+.question-header{
+    display: flex;
+    justify-content: space-between;
+}

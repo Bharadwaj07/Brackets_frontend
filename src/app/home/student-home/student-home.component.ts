@@ -4,6 +4,7 @@ import { AssignmentService } from 'src/app/services/assignment.service';
 import { ClassService } from 'src/app/services/class.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { EvaluationService } from 'src/app/services/evaluation.service';
 @Component({
   selector: 'app-student-home',
   templateUrl: './student-home.component.html',
@@ -14,6 +15,7 @@ export class StudentHomeComponent implements OnInit {
   classList:any[];
   allAssignmentList:any[] =[];
   myassignmentList:any[] =[];
+  evaluationData:any[];
   languages: any[] = [
     { language: 'Python', id: 0, mode: 'python' },
     { language: 'Java Script', id: 1, mode: 'javascript' },
@@ -25,6 +27,7 @@ export class StudentHomeComponent implements OnInit {
     private _classService:ClassService,
     private _assignService:AssignmentService,
     public dialog: MatDialog,
+    private _evaluation:EvaluationService,
     ) { }
 
   ngOnInit(): void {
@@ -33,10 +36,18 @@ export class StudentHomeComponent implements OnInit {
       this.classList = data;
     });
     this._assignService.getStudentsAssignment(this.currentUser._id).subscribe(data =>{
+      console.log("assignmentList",data);
       this.myassignmentList =data;
+    });
+    this._evaluation.getEvaluationForStudent(this.currentUser._id).subscribe(data =>{
+      console.log(data);
+      this.evaluationData = data;
     })
   }
-
+  getScore(assignId){
+    const evalData = this.evaluationData.find(doc => doc.assignment === assignId);
+    return evalData ? evalData.score : null;
+  }
   joinClass(): void {
     console.log("hii")
     const dialogRef = this.dialog.open(JoinClassComponent, {
