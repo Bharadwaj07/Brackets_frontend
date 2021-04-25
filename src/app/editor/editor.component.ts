@@ -16,20 +16,20 @@ export class EditorComponent implements OnInit, AfterViewInit {
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
   @ViewChild("editor") private editor: ElementRef<HTMLElement>;
   output: string = "Your output will display here";
-  isSubmitted:boolean = false;
-  isEvaluated:boolean = false;
+  isSubmitted: boolean = false;
+  isEvaluated: boolean = false;
   assignement: any;
   inputSamples: string;
   outputSamples: string;
   testCases: any[];
-  maxScore:number;
-  score:number;
+  maxScore: number;
+  score: number;
   constructor(
     private compileService: EditorService,
     private router: ActivatedRoute,
     private assignmentService: AssignmentService,
     public dialog: MatDialog,
-    private _evaluation :EvaluationService,
+    private _evaluation: EvaluationService,
   ) { }
   aceEditor: any;
   stdin = new FormControl('');
@@ -47,8 +47,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
     this.router.paramMap.subscribe(params => {
       const id = params.get('id');
       this.getAssignemtDetails(id);
-      this.getSubmission(id,this.currentUser._id);
-      this.getEvaluatedData(this.currentUser._id,id);
+      this.getSubmission(id, this.currentUser._id);
+      this.getEvaluatedData(this.currentUser._id, id);
     });
   }
   getAssignemtDetails(id) {
@@ -63,20 +63,21 @@ export class EditorComponent implements OnInit, AfterViewInit {
       this.setMode(this.language);
     });
   }
-  getSubmission(assignmentId,studentId){
-    this.assignmentService.getStudentSubmission(assignmentId,studentId).subscribe(data =>{
-      if(data){
+  getSubmission(assignmentId, studentId) {
+    this.assignmentService.getStudentSubmission(assignmentId, studentId).subscribe(data => {
+      if (data) {
         console.log(data)
-        this.aceEditor.setValue(data.assignmentBody,1);
+        this.aceEditor.setValue(data.assignmentBody, 1);
         this.isSubmitted = true;
       }
     })
   }
-  getEvaluatedData(studentId,assignmentId){
-    this._evaluation.getEvaluationForAssignment(studentId,assignmentId).subscribe(data =>{
-      console.log(data);
-      this.score = data.score;
-      this.isEvaluated =true;
+  getEvaluatedData(studentId, assignmentId) {
+    this._evaluation.getEvaluationForAssignment(studentId, assignmentId).subscribe(data => {
+      if (data) {
+        this.score = data.score;
+        this.isEvaluated = true;
+      }
     })
   }
   ngAfterViewInit() {
@@ -131,21 +132,21 @@ export class EditorComponent implements OnInit, AfterViewInit {
     const language = this.language.id;
     const testCases = this.testCases
     const assignmentData = this.assignement;
-    if(this.language){
+    if (this.language) {
       if (code !== '') {
         const dialogRef = this.dialog.open(RunTestCasesComponent, {
           width: '250px',
-          data: {code,language,testCases,assignmentData},
+          data: { code, language, testCases, assignmentData },
           disableClose: true
         });
-  
+
         dialogRef.afterClosed().subscribe(result => {
-          console.log('The dialog was closed');
+          this.ngOnInit();
         });
-      }else{
+      } else {
         alert('Empty Code !!');
       }
-    }else{
+    } else {
       alert("please select the language")
     }
 

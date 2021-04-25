@@ -26,13 +26,14 @@ export class RunTestCasesComponent implements OnInit {
     this.code = this.data.code,
     this.language = this.data.language;
     this.assignmentData= this.data.assignmentData;
+    console.log(this.assignmentData)
     if(this.data.testCases.length !== 0){
       this.testCases = this.data.testCases;
     }else{
       this.testCases = [{
-        title:"Test Case",
-        inputs:"",
-        outputs:""
+        title:"TestCaseDefault",
+        inputs:this.assignmentData.inputSample,
+        outputs:this.assignmentData.outputSample
       }]
     }
     await this.runTestCase();
@@ -40,7 +41,7 @@ export class RunTestCasesComponent implements OnInit {
   async runTestCase() {
     await Promise.all(
       this.testCases.map(async (testcase) => {
-        this.compileTestCase(testcase.inputs, testcase.outputs).then((res: any) => {
+        this.compileTestCase(testcase.inputs, testcase.outputs,testcase.title).then((res: any) => {
           this.testCaseResult.push({ testcase, response: res.response })
         }).catch((err: any) => {
           this.testCaseResult.push({ testcase, response: err.response })
@@ -48,7 +49,7 @@ export class RunTestCasesComponent implements OnInit {
       })
     );
   }
-  compileTestCase(input, output) {
+  compileTestCase(input, output,title) {
     return new Promise((reject, resolve) => {
       this.compileService.compileCode(this.language, this.code, input).subscribe(result => {
         if (result) {
@@ -59,7 +60,7 @@ export class RunTestCasesComponent implements OnInit {
             reject(response)
           }
           else {
-            if(input !== ''){
+            if(title !== 'TestCaseDefault'){
               if (result.output.trim() == output) {
                 const response = {
                   response: true

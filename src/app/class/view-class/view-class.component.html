@@ -4,7 +4,7 @@
         <div class="col-3">
             <mat-form-field appearance="outline" style="margin: 10px;" *ngIf="classData">
                 <mat-label>Class Code</mat-label>
-                <input matInput  [value]="classData.teamCode" readonly>
+                <input matInput [value]="classData.teamCode" readonly>
                 <mat-icon matSuffix (click)="dissableCode(classData._id)" style="cursor: pointer;">block</mat-icon>
             </mat-form-field>
             <div class="card">
@@ -39,7 +39,7 @@
                         </div>
                         <div class="card-body">
 
-                            <p class="card-text">{{assignment.question}}</p>
+                            <p class="card-text">{{assignment.title}}</p>
                             <h4>Language : {{getLanguage(assignment.language)}}</h4>
                             <a class="btn btn-info" [routerLink]="['../../submission',assignment._id]">View</a>
                         </div>
@@ -49,12 +49,26 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <button type="button" class="btn btn-info" style="width: 100%;">Create Branch</button>
-                            <li class="list-group-item student-list" *ngFor="let student of studentList"
-                                style="margin-top: 10px;">
+                            <button type="button" class="btn btn-info" style="width: 100%;"
+                                (click)="createBranch()">Create Branch</button>
+                            <!-- <li class="list-group-item student-list" *ngFor="let branch of branchList"
+                                >
                                 <span>
-                                    {{student.name}}
+                                    {{branch.title}}
+                                    <span class="badge  badge-pill" 
+                                        style="cursor: pointer;">
+                                        <mat-icon>delete</mat-icon>
+                                    </span>
                                 </span>
+                            </li> -->
+                            <li class="list-group-item d-flex justify-content-between align-items-center"
+                                *ngFor="let branch of branchList" style="margin-top: 10px;">
+                                {{branch.title}}
+                                <span class="badge  badge-pill" >
+                                    <mat-icon style="margin-left: 10px;cursor: pointer;" (click)='editBranch(branch)'>edit</mat-icon>
+                                    <mat-icon style="margin-left: 10px;cursor: pointer;" (click)="deleteBranch(branch._id)">delete</mat-icon>
+                                </span>
+                                
                             </li>
                         </div>
                     </div>

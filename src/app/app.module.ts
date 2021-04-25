@@ -31,6 +31,7 @@ import { EditDialogComponent } from './assignment/edit-dialog/edit-dialog.compon
 import { EvalTestCasesComponent } from './assignment/view-assignment/view-code/eval-test-cases/eval-test-cases.component';
 import { DiscussionComponent } from './discussion/discussion.component';
 import { MessagesComponent } from './discussion/messages/messages.component';
+import { BranchComponent } from './class/branch/branch.component';
 
 
 
@@ -64,6 +65,7 @@ import { MessagesComponent } from './discussion/messages/messages.component';
     EvalTestCasesComponent,
     DiscussionComponent,
     MessagesComponent,
+    BranchComponent,
   ],
   imports: [
     BrowserModule,

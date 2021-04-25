@@ -1,0 +1,32 @@
+<div class="container" *ngIf="data.addBranch">
+    <h3>Create Branch</h3>
+    <form  [formGroup]="branchForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+            <mat-label>Class Name</mat-label>
+            <input matInput formControlName="title">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Students</mat-label>
+            <mat-select  multiple formControlName="students">
+              <mat-option *ngFor="let student of classStudents" [value]="student._id">{{student.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <button  class="btn btn-success">Create Branch</button>
+    </form>
+</div>
+<div class="container" *ngIf="data.editBranch">
+    <h3>Edit Branch</h3>
+    <form  [formGroup]="branchForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+            <mat-label>Class Name</mat-label>
+            <input matInput formControlName="title">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Students</mat-label>
+            <mat-select  multiple formControlName="students">
+              <mat-option *ngFor="let student of classStudents" [value]="student._id">{{student.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <button  class="btn btn-success">Save</button>
+    </form>
+</div>
