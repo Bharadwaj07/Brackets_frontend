@@ -32,6 +32,7 @@ import { EvalTestCasesComponent } from './assignment/view-assignment/view-code/e
 import { DiscussionComponent } from './discussion/discussion.component';
 import { MessagesComponent } from './discussion/messages/messages.component';
 import { BranchComponent } from './class/branch/branch.component';
+import { ViewCommentsComponent } from './home/student-home/view-comments/view-comments.component';
 
 
 
@@ -66,6 +67,7 @@ import { BranchComponent } from './class/branch/branch.component';
     DiscussionComponent,
     MessagesComponent,
     BranchComponent,
+    ViewCommentsComponent,
   ],
   imports: [
     BrowserModule,

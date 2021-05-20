@@ -80,4 +80,11 @@ export class ClassService {
       }
     })
   }
+  deleteClass(id):Observable<any>{
+    return this.http.delete(`${environment.url}team-operations/${id}/`,{
+      headers:{
+        Authorization:`Bearer ${this.token}`
+      }
+    })
+  }
 }

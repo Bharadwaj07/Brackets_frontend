@@ -17,13 +17,27 @@ export class CreateClassDialogComponent implements OnInit {
   teacherList:any[];
   classCode:string;
   ngOnInit(): void {
-    this._classService.getClassCode().subscribe(data =>{
-      this.classCode= data.classCode;
-    });
-    this._classService.getAllTeachers().subscribe(data =>{
-      this.teacherList = data;
-      this.initForm();
-    })
+    if(this.data.classData){
+      const {classData} = this.data;
+      this._classService.getAllTeachers().subscribe(data =>{
+        this.teacherList = data;
+        // this.initForm();
+      })
+      this.classForm = this.fb.group({
+        title:[classData.title,Validators.required],
+        owner:[classData.owner._id,Validators.required],
+        teamCode:[classData.teamCode],
+        isEnabled:[true]
+      });
+    }else{
+      this._classService.getClassCode().subscribe(data =>{
+        this.classCode= data.classCode;
+      });
+      this._classService.getAllTeachers().subscribe(data =>{
+        this.teacherList = data;
+        this.initForm();
+      })
+    }
      
   }
   initForm(){
@@ -38,11 +52,19 @@ export class CreateClassDialogComponent implements OnInit {
     this.dialogRef.close();
   }
   onSubmit(){
-    if(this.classForm.valid){
-      this._classService.createClass(this.classForm.value).subscribe(data =>{
-        console.log("class created  =>>",data);
+    if(this.data.classData){
+      this._classService.modifyClass(this.classForm.value ,this.data.classData._id).subscribe(data =>{
+        this.dialogRef.close();
       })
     }
-    this.dialogRef.close();
+    else{
+      if(this.classForm.valid){
+        this._classService.createClass(this.classForm.value).subscribe(data =>{
+          console.log("class created  =>>",data);
+          this.dialogRef.close();
+        })
+      }
+    }
+    // this.dialogRef.close();
   }
 }

@@ -17,6 +17,13 @@ export class UserService {
       }
     });
   }
+  deleteUser(id):Observable<any>{
+    return this.http.delete<any>(`${environment.url}user-operations/${id}`,{
+      headers:{
+        Authorization:`Bearer ${this.token}`
+      }
+    });
+  }
   modifyUser(id,userType):Observable<any>{
     return this.http.patch<any>(`${environment.url}user-operations/${id}`,{userType},{
       headers:{

@@ -5,6 +5,7 @@ import { ClassService } from 'src/app/services/class.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EvaluationService } from 'src/app/services/evaluation.service';
+import { ViewCommentsComponent } from './view-comments/view-comments.component';
 @Component({
   selector: 'app-student-home',
   templateUrl: './student-home.component.html',
@@ -48,11 +49,26 @@ export class StudentHomeComponent implements OnInit {
     const evalData = this.evaluationData.find(doc => doc.assignment === assignId);
     return evalData ? evalData.score : null;
   }
+  getCommnet(assignId){
+    const evalData = this.evaluationData.find(doc => doc.assignment === assignId);
+    return evalData ? evalData.comment : null;
+  }
   joinClass(): void {
     console.log("hii")
     const dialogRef = this.dialog.open(JoinClassComponent, {
       width: '250px',
       data: this.currentUser._id
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit()
+    });
+  }
+  viewCommnets(assignId): void {
+    const evalData = this.evaluationData.find(doc => doc.assignment === assignId);
+    const dialogRef = this.dialog.open(ViewCommentsComponent, {
+      width: '250px',
+      data: evalData.comment
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -4,20 +4,25 @@
           <h2>Register</h2>
               <mat-form-field appearance="outline">
                 <mat-label>Name</mat-label>
-                <input matInput formControlName="name">
+                <input matInput formControlName="name" id="name">
                 <mat-error *ngIf="form.email.invalid"></mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
-                <input matInput formControlName="email">
+                <input matInput formControlName="email" id="email" >
                 <mat-error *ngIf="form.email.invalid"></mat-error>
               </mat-form-field>
-              <!-- <mat-form-field appearance="outline">
+              <mat-form-field appearance="outline">
                 <mat-label>User Type</mat-label>
-                <mat-select formControlName="userType">
+                <mat-select formControlName="userType" (selectionChange)="change($event)" id="userType">
                   <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
                 </mat-select>
-              </mat-form-field> -->
+              </mat-form-field>
+              <mat-form-field appearance="outline" *ngIf="isStudent">
+                <mat-label>SRN</mat-label>
+                <input matInput formControlName="srn">
+                <mat-error *ngIf="form.email.invalid"></mat-error>
+              </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
                 <input type="password" matInput formControlName='password'>

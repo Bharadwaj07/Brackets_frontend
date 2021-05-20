@@ -1,0 +1,9 @@
+<form> 
+    <h4>Comments</h4>
+    <mat-form-field appearance="fill">
+        <mat-label>Comments</mat-label>
+        <textarea matInput [value]="data" readonly rows="5"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" (click)="onNoClick()">Ok</button>
+</form>

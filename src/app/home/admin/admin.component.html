@@ -1,6 +1,6 @@
 <mat-card class="container" style="margin-top: 20px;">
     <mat-tab-group>
-        <mat-tab label="Manage Teacher">
+        <mat-tab label="Manage User">
             <!-- <div class="button">
                 <button mat-raised-button color="accent" style="float: right;">Add Teacher</button>
             </div> -->
@@ -26,7 +26,7 @@
                             </button>
                             <mat-menu #menu="matMenu">
                                 <button mat-menu-item (click)="editUserType(element)">Edit</button>
-                                <button mat-menu-item>Delete</button>
+                                <button mat-menu-item (click)="deleteUser(element._id)">Delete</button>
                             </mat-menu>
 
                         </td>
@@ -62,8 +62,8 @@
                                 <mat-icon>more_vert</mat-icon>
                             </button>
                             <mat-menu #menu="matMenu">
-                                <button mat-menu-item>Edit</button>
-                                <button mat-menu-item>Delete</button>
+                                <button mat-menu-item (click)="editClass(element)">Edit</button>
+                                <button mat-menu-item (click)="deleteClass(element._id)">Delete</button>
                             </mat-menu>
 
                         </td>

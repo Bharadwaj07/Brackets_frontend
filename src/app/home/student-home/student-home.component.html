@@ -8,6 +8,7 @@
                         <h4>{{currentUser.name}}</h4>
                         <h4>{{currentUser.email}}</h4>
                         <h4>{{currentUser.userType}}</h4>
+                        <h4 *ngIf="currentUser.srn">{{currentUser.srn}}</h4>
                     </div>
                 </div>
             </div>
@@ -47,6 +48,7 @@
                     <p class="card-text">{{assignment.title}}</p>
                     <h4>Language : {{getLanguage(assignment.language)}}</h4>
                     <a href="#" class="btn btn-info" [routerLink]="['../editor',assignment._id]">View</a>
+                    <button  class="btn btn-info" *ngIf="getCommnet(assignment._id)" (click)="viewCommnets(assignment._id)" style="margin-left: 10px;">View Comments</button>
                 </div>
             </div>
         </div>

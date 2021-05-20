@@ -24,7 +24,7 @@ export class CreateAssignmentDialogComponent implements OnInit {
     { language: 'C/C++', id: 2, mode: 'c_cpp' },
     { language: 'Go', id: 3, mode: 'golang' },
   ]
-  isLinear = false;
+  isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -35,7 +35,7 @@ export class CreateAssignmentDialogComponent implements OnInit {
       language:["",Validators.required],
       owner:[this.data._id],
       team:["",Validators.required],
-      maxScore:[''],
+      maxScore:['',Validators.required],
       submission:["",Validators.required]
     });
     this.secondFormGroup = this.fb.group({

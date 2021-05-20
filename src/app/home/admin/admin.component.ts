@@ -76,6 +76,26 @@ export class AdminComponent implements OnInit {
       this.ngOnInit()
     });
   }
+  deleteUser(userId){
+    this._userService.deleteUser(userId).subscribe(data =>{
+      this.ngOnInit();
+    })
+  }
+  editClass(classData): void {
+    const dialogRef = this.dialog.open(CreateClassDialogComponent, {
+      width: '250px',
+      data: {classData}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit()
+    });
+  }
+  deleteClass(id){
+    this._class.deleteClass(id).subscribe(data =>{
+      this.ngOnInit()
+    })
+  }
 }
 
 @Component({
