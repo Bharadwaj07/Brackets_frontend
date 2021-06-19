@@ -27,6 +27,7 @@ export class EditDialogComponent implements OnInit {
     { language: 'C/C++', id: 2, mode: 'c_cpp' },
     { language: 'Go', id: 3, mode: 'golang' },
   ]
+  today = new Date();
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;

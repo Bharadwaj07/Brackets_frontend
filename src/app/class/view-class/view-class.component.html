@@ -4,8 +4,8 @@
         <div class="col-3">
             <mat-form-field appearance="outline" style="margin: 10px;" *ngIf="classData">
                 <mat-label>Class Code</mat-label>
-                <input matInput [value]="classData.teamCode" readonly>
-                <mat-icon matSuffix (click)="dissableCode(classData._id)" style="cursor: pointer;">block</mat-icon>
+                <input matInput [value]="classData.teamCode" readonly #input>
+                <mat-icon matSuffix (click)="dissableCode(classData._id)" style="cursor: pointer;" (click)="copy(input)">content_copy</mat-icon>
             </mat-form-field>
             <div class="card">
                 <div class="card-header assignment-header">
@@ -49,8 +49,8 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <button type="button" class="btn btn-info" style="width: 100%;"
-                                (click)="createBranch()">Create Branch</button>
+                            <!-- <button type="button" class="btn btn-info" style="width: 100%;"
+                                (click)="createBranch()">Create Branch</button> -->
                             <!-- <li class="list-group-item student-list" *ngFor="let branch of branchList"
                                 >
                                 <span>
@@ -68,7 +68,6 @@
                                     <mat-icon style="margin-left: 10px;cursor: pointer;" (click)='editBranch(branch)'>edit</mat-icon>
                                     <mat-icon style="margin-left: 10px;cursor: pointer;" (click)="deleteBranch(branch._id)">delete</mat-icon>
                                 </span>
-                                
                             </li>
                         </div>
                     </div>

@@ -24,6 +24,7 @@ export class CreateAssignmentDialogComponent implements OnInit {
     { language: 'C/C++', id: 2, mode: 'c_cpp' },
     { language: 'Go', id: 3, mode: 'golang' },
   ]
+  today = new Date();
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -31,11 +32,11 @@ export class CreateAssignmentDialogComponent implements OnInit {
   testCasesList:any[] =[];
   ngOnInit(): void {
     this.firstFormGroup = this.fb.group({
-      title:["",Validators.required],
+      title:["",Validators.compose([Validators.required,Validators.pattern('^[a-zA-Z ]*$')])],
       language:["",Validators.required],
       owner:[this.data._id],
       team:["",Validators.required],
-      maxScore:['',Validators.required],
+      maxScore:['',Validators.compose([Validators.required,Validators.pattern("^[0-9]*$")])],
       submission:["",Validators.required]
     });
     this.secondFormGroup = this.fb.group({

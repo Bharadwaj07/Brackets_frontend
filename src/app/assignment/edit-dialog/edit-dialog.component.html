@@ -20,12 +20,12 @@
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Max Score</mat-label>
-        <input matInput formControlName="maxScore">
+        <input matInput formControlName="maxScore" type="number">
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Submission Date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="submission">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <input matInput [matDatepicker]="picker" formControlName="submission" [min]="today">
+        <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <div>

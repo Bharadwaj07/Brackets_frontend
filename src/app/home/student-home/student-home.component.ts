@@ -37,8 +37,7 @@ export class StudentHomeComponent implements OnInit {
       this.classList = data;
     });
     this._assignService.getStudentsAssignment(this.currentUser._id).subscribe(data =>{
-      console.log("assignmentList",data);
-      this.myassignmentList =data;
+      this.myassignmentList =data.reverse();
     });
     this._evaluation.getEvaluationForStudent(this.currentUser._id).subscribe(data =>{
       console.log(data);

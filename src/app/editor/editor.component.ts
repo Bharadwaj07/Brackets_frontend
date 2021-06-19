@@ -32,6 +32,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
     private _evaluation: EvaluationService,
   ) { }
   aceEditor: any;
+  submissionDate:Date;
+  today = new Date();
   stdin = new FormControl('');
   outputLoading: boolean = false;
   languages: any[] = [
@@ -60,6 +62,7 @@ export class EditorComponent implements OnInit, AfterViewInit {
       this.outputSamples = data.outputSample ? data.outputSample : undefined;
       this.testCases = data.testCases ? data.testCases : undefined;
       this.language = this.languages.find(lang => lang.id == data.language);
+      this.submissionDate = data.submission;
       this.setMode(this.language);
     });
   }

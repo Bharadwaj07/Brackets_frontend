@@ -19,7 +19,6 @@ export class LoginService {
                         if(response){
                           if(response.success ===true){
                             this.router.navigate(['login'])
-                            // localStorage.setItem('authToken',response.token);
                           }else{
                             console.log("error response:",response);
                           }

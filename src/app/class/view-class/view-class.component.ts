@@ -100,6 +100,10 @@ export class ViewClassComponent implements OnInit {
       this.ngOnInit()
     });
   }
+  copy(input:HTMLInputElement){
+    input.select();
+    document.execCommand("copy");
+  }
   getLanguage(languageId) {
     const index = this.languages.findIndex(ele => ele.id == languageId);
     return this.languages[index].language;
