@@ -32,8 +32,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
     private _evaluation: EvaluationService,
   ) { }
   aceEditor: any;
-  submissionDate:Date;
-  today = new Date();
+  submissionDate:any;
+  today = new Date().getTime();
   stdin = new FormControl('');
   outputLoading: boolean = false;
   languages: any[] = [
@@ -62,7 +62,8 @@ export class EditorComponent implements OnInit, AfterViewInit {
       this.outputSamples = data.outputSample ? data.outputSample : undefined;
       this.testCases = data.testCases ? data.testCases : undefined;
       this.language = this.languages.find(lang => lang.id == data.language);
-      this.submissionDate = data.submission;
+      this.submissionDate = new Date(data.submission).getTime();
+      // console.log(this.submissionDate > this.today)
       this.setMode(this.language);
     });
   }
